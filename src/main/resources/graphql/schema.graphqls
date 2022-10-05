@@ -1,0 +1,9 @@
+type Query {
+    minimalPageProps: MinimalPageProps
+}
+
+type MinimalPageProps {
+    isLoggedIn: Boolean,
+    userId: Int,
+    userName: String,
+}
