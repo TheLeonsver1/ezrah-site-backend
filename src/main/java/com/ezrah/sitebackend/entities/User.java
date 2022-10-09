@@ -1,22 +1,20 @@
 package com.ezrah.sitebackend.entities;
 
-import lombok.Data;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
-import java.util.Collection;
 import java.util.List;
 
 @Entity
+@Table(name = "users")
 @Getter
 @Setter
 @NoArgsConstructor
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,7 +31,12 @@ public class User implements UserDetails {
     private boolean locked;
 
     @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "user_authorities")
     private List<Authority> authorities;
+
+    @OneToMany
+    @JoinTable(name = "user_created_post")
+    public List<UserPost> createdPosts;
 
     @Transient
     @Override
@@ -58,4 +61,5 @@ public class User implements UserDetails {
     public boolean isEnabled() {
         return !deleted;
     }
+
 }

@@ -4,10 +4,10 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Builder;
 import lombok.Data;
 
-@Data
 @Builder
+@Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class MinimalPageProps {
+public class LoggedInUser {
     private Boolean isLoggedIn;
     private Integer userId;
     private String userName;

@@ -1,9 +1,76 @@
 type Query {
-    minimalPageProps: MinimalPageProps
+    loggedInUser: LoggedInUser
+    getBills: [Bill]
+    getBill(id:ID!): Bill
+    getPosts: [UserPost]
+    getPost(id:ID!): UserPost
+    getBillComments(billId:ID!, paging: Paging): [UserPost]
 }
 
-type MinimalPageProps {
-    isLoggedIn: Boolean,
-    userId: Int,
+type Mutation {
+    addBillComment(billId:ID!, commentText:String): UserPost
+}
+
+input Paging {
+    page: Int = 0,
+    size: Int = 10,
+    sort: Sort
+}
+
+enum Sort {
+    ASC,
+    DESC
+}
+
+type LoggedInUser {
+    userId: ID,
+    isLoggedIn:Boolean,
     userName: String,
 }
+
+type Bill {
+    id: ID!,
+    knsBillId: ID!,
+    knessetNum: Int,
+    name: String!,
+    privateNumber: Int,
+    governmentalNumber: Int,
+    officialLawSummary: String,
+    publicationDate: LocalDateTime,
+    knsLastUpdatedDate: LocalDateTime,
+    status: Status,
+    subType: ItemType,
+}
+
+type Status {
+    id: ID!,
+    description: String,
+}
+
+type ItemType {
+    id: ID!,
+    description: String,
+}
+
+type UserPost {
+    id: ID!,
+    childComments: [UserPost],
+    createdDate: LocalDateTime,
+    lastModifiedDate: LocalDateTime,
+    latestContentVersion: String,
+    postCreator: User,
+}
+
+type User {
+    id: ID!,
+    username: String,
+}
+
+# java.time.LocalDate implementation
+scalar LocalDate
+
+# java.time.LocalDateTime implementation
+scalar LocalDateTime
+
+# java.time.LocalTime implementation
+scalar LocalTime

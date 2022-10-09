@@ -45,7 +45,7 @@ public class SecurityConfig {
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowedOrigins(Arrays.asList("http://ezrah.local", // Frontend
-                                                    "http://api.ezrah.local")); // /graphiql endpoint
+                "http://api.ezrah.local")); // /graphiql endpoint
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "OPTIONS"));
         configuration.setAllowCredentials(true);
         configuration.setAllowedHeaders(Collections.singletonList(HttpHeaders.CONTENT_TYPE));
@@ -57,9 +57,10 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
-        http.authorizeRequests().antMatchers("/login", "/register", "/refreshToken", "/graphql", "/graphiql").permitAll()
+        http.authorizeRequests()
 //                .antMatchers("/users/**", "/settings/**").hasAuthority("Admin")
-                .anyRequest().authenticated()
+                .antMatchers("/secure/**").authenticated()
+                .anyRequest().permitAll()
                 .and().sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and().exceptionHandling().authenticationEntryPoint(new Http403ForbiddenEntryPoint())
