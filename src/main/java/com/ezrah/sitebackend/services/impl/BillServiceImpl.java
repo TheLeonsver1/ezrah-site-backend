@@ -56,7 +56,6 @@ public class BillServiceImpl implements BillService {
             billComment.setInitialContentVersion(commentText);
             billComment.setLatestContentVersion(commentText);
             billComment.setPostCreator(user);
-            billComment.setBillComment(billComment);
             return billCommentsRepo.save(billComment);
         } else {
             throw new Exception("Bill not found");

@@ -35,7 +35,7 @@ public class User implements UserDetails {
     private List<Authority> authorities;
 
     @OneToMany
-    @JoinTable(name = "user_created_post")
+    @JoinTable(name = "posts_by_user")
     public List<UserPost> createdPosts;
 
     @Transient
@@ -61,5 +61,6 @@ public class User implements UserDetails {
     public boolean isEnabled() {
         return !deleted;
     }
+
 
 }

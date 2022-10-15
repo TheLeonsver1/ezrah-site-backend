@@ -19,13 +19,13 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class Bill implements Serializable {
+public class Bill extends Reactable implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
 
-    Integer knsBillId;
+    Integer knsId;
 
     /**
      * The knesset number when the bill passed 3rd call
@@ -36,9 +36,6 @@ public class Bill implements Serializable {
      * Bill name
      */
     String name;
-
-    @ManyToOne
-    ItemType subType;
 
     @ManyToOne
     Status status;
@@ -69,4 +66,14 @@ public class Bill implements Serializable {
      */
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "bill")
     List<BillComment> comments;
+
+    /**
+     * The bill's subtype in the knesset api
+     */
+    Integer knsSubTypeId;
+
+    String knsSubTypeDescription;
+
+    @OneToMany(mappedBy = "bill")
+    List<BillInitiator> billInitiators;
 }

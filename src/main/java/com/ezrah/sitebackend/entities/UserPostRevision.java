@@ -23,5 +23,8 @@ public abstract class UserPostRevision {
     @ToString.Exclude
     UserPost userPost;
 
+    /**
+     * The generated diff when compared to the previous revision
+     */
     private String diff;
 }

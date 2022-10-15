@@ -30,7 +30,7 @@ type LoggedInUser {
 
 type Bill {
     id: ID!,
-    knsBillId: ID!,
+    knsId: ID!,
     knessetNum: Int,
     name: String!,
     privateNumber: Int,
@@ -40,6 +40,37 @@ type Bill {
     knsLastUpdatedDate: LocalDateTime,
     status: Status,
     subType: ItemType,
+    billInitiators: [BillInitiator]
+}
+
+type BillInitiator {
+    id: ID!,
+    bill:Bill!,
+    person: Person!,
+    isInitiator: Boolean,
+    ordinal: Int
+}
+
+type Person {
+    id:ID!,
+    firstName: String,
+    lastName:String,
+    email: String,
+    billsInitiated: [BillInitiator],
+    positionHistory: [PersonPosition],
+}
+
+type PersonPosition {
+    id: ID!,
+    person: Person,
+    position: Position,
+    knessetNum: Int
+    startDate:LocalDateTime,
+    finishDate:LocalDateTime,
+}
+
+type Position {
+    id: ID!,
 }
 
 type Status {
@@ -59,6 +90,12 @@ type UserPost {
     lastModifiedDate: LocalDateTime,
     latestContentVersion: String,
     postCreator: User,
+    bill: Bill,
+    happyCount: Int,
+    sadCount: Int,
+    angryCount: Int,
+    enlightenedCount: Int,
+    surprisedCount: Int,
 }
 
 type User {

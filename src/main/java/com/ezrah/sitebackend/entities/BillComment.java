@@ -7,16 +7,13 @@ import lombok.Setter;
 import lombok.ToString;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import javax.persistence.Entity;
-import javax.persistence.EntityListeners;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * Any type of textual post a user can create, whether a post on a bill, or a comment on another user's post, or anything else
  */
 @Entity
-@Table(name = "bill_comments")
+@DiscriminatorValue(value = "BILL_COMMENT")
 @Getter
 @Setter
 @ToString
@@ -24,7 +21,7 @@ import javax.persistence.Table;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @EntityListeners(AuditingEntityListener.class)
 public class BillComment extends UserPost {
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @ToString.Exclude
     private Bill bill;
 

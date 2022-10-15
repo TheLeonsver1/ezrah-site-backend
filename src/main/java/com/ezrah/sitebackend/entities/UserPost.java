@@ -15,14 +15,15 @@ import java.util.List;
 /**
  * Any type of textual post a user can create, whether a post on a bill, or a comment on another user's post, or anything else
  */
-@Entity(name = "user_posts")
-@Inheritance(strategy = InheritanceType.JOINED)
+@Entity
+@Table(name = "user_posts")
+@Inheritance
 @Getter
 @Setter
 @ToString
 @RequiredArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public abstract class UserPost {
+public abstract class UserPost extends Reactable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -69,17 +70,13 @@ public abstract class UserPost {
     /**
      * Revision history(textual diffs) of the post
      */
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "userPost")
+    @OneToMany(mappedBy = "userPost")
     @ToString.Exclude
     private List<UserPostRevision> history;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @ToString.Exclude
     private User postCreator;
-
-    @OneToOne(fetch = FetchType.LAZY)
-    @ToString.Exclude
-    private BillComment billComment;
 
 
 }

@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * A person who is related to the knesset, maps to a KNS_Person in knesset api
@@ -21,4 +22,18 @@ public class Person {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
 
+    @Column(unique = true)
+    Integer knsId;
+
+    String firstName;
+
+    String lastName;
+
+    String email;
+
+    @OneToMany(mappedBy = "person")
+    List<PersonPosition> positionHistory;
+
+    @OneToMany(mappedBy = "person")
+    List<BillInitiator> billsInitiated;
 }
