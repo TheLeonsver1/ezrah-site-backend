@@ -1,15 +1,15 @@
 package com.ezrah.sitebackend.controllers;
 
-import com.ezrah.sitebackend.common.PagingVisitor;
-import com.ezrah.sitebackend.entities.Bill;
-import com.ezrah.sitebackend.entities.BillComment;
-import com.ezrah.sitebackend.entities.User;
-import com.ezrah.sitebackend.entities.UserPost;
-import com.ezrah.sitebackend.objects.LoggedInUser;
-import com.ezrah.sitebackend.objects.Paging;
-import com.ezrah.sitebackend.services.BillService;
-import com.ezrah.sitebackend.services.UserPostService;
-import com.ezrah.sitebackend.services.UserService;
+import com.ezrah.sitebackend.base.common.PagingVisitor;
+import com.ezrah.sitebackend.bills.Bill;
+import com.ezrah.sitebackend.comments.BillComment;
+import com.ezrah.sitebackend.users.User;
+import com.ezrah.sitebackend.comments.UserPost;
+import com.ezrah.sitebackend.base.objects.LoggedInUser;
+import com.ezrah.sitebackend.base.objects.Paging;
+import com.ezrah.sitebackend.bills.BillService;
+import com.ezrah.sitebackend.comments.UserPostService;
+import com.ezrah.sitebackend.users.UserService;
 import io.jsonwebtoken.lang.Assert;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;

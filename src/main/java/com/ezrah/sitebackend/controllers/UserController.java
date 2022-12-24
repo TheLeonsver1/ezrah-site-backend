@@ -1,10 +1,10 @@
 package com.ezrah.sitebackend.controllers;
 
-import com.ezrah.sitebackend.common.CookieUtils;
-import com.ezrah.sitebackend.common.JWTUtils;
-import com.ezrah.sitebackend.entities.User;
-import com.ezrah.sitebackend.objects.JWTRequest;
-import com.ezrah.sitebackend.services.UserService;
+import com.ezrah.sitebackend.base.common.CookieUtils;
+import com.ezrah.sitebackend.base.common.JWTUtils;
+import com.ezrah.sitebackend.users.User;
+import com.ezrah.sitebackend.base.objects.JWTRequest;
+import com.ezrah.sitebackend.users.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +16,6 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
-import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.constraints.Email;
