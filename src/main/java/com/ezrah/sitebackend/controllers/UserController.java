@@ -16,13 +16,13 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 @RestController
 @Slf4j
@@ -54,10 +54,10 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    private ResponseEntity<Void> login(HttpServletRequest request,HttpServletResponse response, @RequestBody JWTRequest jwtRequest) {
+    private ResponseEntity<Void> login(HttpServletRequest request, HttpServletResponse response, @RequestBody JWTRequest jwtRequest) {
         try {
             Authentication auth = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(jwtRequest.getUsernameOrEmail(), jwtRequest.getPassword()));
-            response.addHeader(HttpHeaders.SET_COOKIE, cookieUtils.createCookie(jwtUtils.getAccessTokenCookieName(), jwtUtils.generateToken((User) auth.getPrincipal()),true, request.isSecure(), (int) jwtUtils.getAccessTokenValidityInSeconds()).toString());
+            response.addHeader(HttpHeaders.SET_COOKIE, cookieUtils.createCookie(jwtUtils.getAccessTokenCookieName(), jwtUtils.generateToken((User) auth.getPrincipal()), true, request.isSecure(), (int) jwtUtils.getAccessTokenValidityInSeconds()).toString());
             return ResponseEntity.ok(null);
         } catch (Exception e) {
             log.error("Failed authentication", e);

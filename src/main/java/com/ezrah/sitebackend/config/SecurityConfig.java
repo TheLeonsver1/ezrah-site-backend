@@ -57,9 +57,9 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
-        http.authorizeRequests()
+        http.authorizeHttpRequests()
 //                .antMatchers("/users/**", "/settings/**").hasAuthority("Admin")
-                .antMatchers("/secure/**").authenticated()
+                .requestMatchers("/secure/**").authenticated()
                 .anyRequest().permitAll()
                 .and().sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)

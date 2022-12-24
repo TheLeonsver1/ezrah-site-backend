@@ -1,6 +1,6 @@
 package com.ezrah.sitebackend.entities;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "israeli_laws")

@@ -6,7 +6,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity(name = "user_post_revisions")
 @JsonInclude(JsonInclude.Include.NON_NULL)

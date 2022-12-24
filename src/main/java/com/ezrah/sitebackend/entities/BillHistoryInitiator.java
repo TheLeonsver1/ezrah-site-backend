@@ -2,8 +2,8 @@ package com.ezrah.sitebackend.entities;
 
 import lombok.ToString;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 
 /**
  * This exists because I don't know if KNS_BillInitiator and KNS_BillHistoryInitiator share ids

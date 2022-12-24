@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseCookie;
 import org.springframework.stereotype.Component;
 
-import javax.servlet.http.Cookie;
+import jakarta.servlet.http.Cookie;
 
 @Component
 public class CookieUtils {
@@ -20,7 +20,7 @@ public class CookieUtils {
                 .httpOnly(isHttpOnly)
                 .path("/")
                 .maxAge(maxAge)
-                    .sameSite(SameSiteCookies.STRICT.getValue())
+                .sameSite(SameSiteCookies.STRICT.getValue())
                 .domain(domain)
                 .build();
     }
